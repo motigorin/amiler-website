@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amiler Medical Aesthetic - קליניקה לאסתטיקה רפואית מתקדמת</title>
+    <meta name="description" content="Amiler - קליניקה מתקדמת לאסתטיקה רפואית בירושלים. טיפולי בוטוקס, חומצה היאלורונית, PRP ועוד. הזמיני ייעוץ אישי היום!">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Critical CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: rgb(212, 192, 191);
+            --primary-dark: rgb(195, 175, 174);
+            --primary-light: rgb(225, 210, 209);
+            --secondary-color: #f8f5f4;
+            --accent-color: rgb(180, 160, 159);
+            --text-dark: rgb(51, 51, 51);
+            --text-light: #666;
+            --text-muted: #999;
+            --white: #ffffff;
+            --shadow-light: 0 2px 10px rgba(0,0,0,0.05);
+            --shadow-medium: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-heavy: 0 8px 30px rgba(0,0,0,0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Noto Sans Hebrew', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--white) 0%, var(--secondary-color) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-animation {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--secondary-color);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-light);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-light);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+            filter: brightness(1.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: var(--transition);
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: var(--transition);
+                box-shadow: var(--shadow-heavy);
+            }
+
+            .nav.active {
+                right: 0;
+            }
+
+            .nav-link {
+                padding: 1rem 2rem;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid var(--secondary-color);
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, rgba(255,255,255,0.8) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="%23000" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--text-dark);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-dark);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInLeft 1s ease 1s forwards;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow-heavy);
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            right: 10%;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            animation-delay: -2s;
+        }
+
+        .floating-element:nth-child(2) {
+            bottom: 20%;
+            left: 10%;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            border-radius: 30%;
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+                padding-top: 2rem;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--secondary-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Features Section */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--secondary-color);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--secondary-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--secondary-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .contact-details h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-dark);
+        }
+
+        .contact-details p {
+            color: var(--text-light);
+        }
+
+        .contact-form {
+            background: var(--secondary-color);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            background: white;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--primary-light);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            background: var(--primary-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            color: #999;
+        }
+
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-2px);
+            background: var(--primary-dark);
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: var(--shadow-medium);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Utilities */
+        .text-center { text-align: center; }
+        .text-primary { color: var(--primary-color); }
+        .bg-white { background: white; }
+        .bg-secondary { background: var(--secondary-color); }
+        .hidden { display: none; }
+        .fade-in { animation: fadeInUp 0.8s ease forwards; }
+        .slide-in { animation: fadeInLeft 0.8s ease forwards; }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-animation"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="#home" class="logo">
+                <img src="https://amileraesthetics.my-websites.co/wp-content/uploads/elementor/thumbs/67bb0d70e10b0-r3a0zswwiiw6w1npuryyr0acml9ojwzlebj6g4kxcg.jpeg" alt="Amiler Medical Aesthetic" style="height: 40px; width: auto;">
+                <span>Amiler Medical Aesthetic</span>
+            </a>
+
+            <nav class="nav" id="nav">
+                <a href="#home" class="nav-link active">בית</a>
+                <a href="#about" class="nav-link">אודות</a>
+                <a href="#services" class="nav-link">שירותים</a>
+                <a href="#gallery" class="nav-link">גלריה</a>
+                <a href="#contact" class="nav-link">צור קשר</a>
+                <a href="tel:0548917070" class="cta-button">חייג עכשיו</a>
+            </nav>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">✨ מותג האסתטיקה המוביל בירושלים</div>
+                <h1 class="hero-title">
+                    Amiler Medical<br>
+                    <span class="text-primary">Aesthetic</span>
+                </h1>
+                <p class="hero-subtitle">
+                    קליניקה מתקדמת לאסתטיקה רפואית בירושלים. חדשנות רפואית, מקצועיות בלתי מתפשרת וסטנדרט של יופי טבעי ומדויק.
+                </p>
+                <div class="hero-actions">
+                    <a href="#contact" class="cta-button">הזמן ייעוץ אישי</a>
+                    <a href="#about" class="btn-secondary">למד עוד</a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23f8f5f4'/%3E%3Ctext x='300' y='200' text-anchor='middle' font-family='Arial' font-size='24' fill='%23d4c0bf'%3EAmiler Medical Aesthetic%3C/text%3E%3C/svg%3E" alt="Amiler Medical Aesthetic - טיפולי יופי מתקדמים">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-badge">אודותינו</div>
+                <h2 class="section-title">מי אנחנו</h2>
+                <p class="section-subtitle">
+                    שתי אחיות ירושלמיות עם חזון אחד ברור: להביא ללקוחות את השילוב האידיאלי בין חדשנות רפואית ומקצועיות בלתי מתפשרת
+                </p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        <strong>Amiler – מדיקל אסתטיק</strong> היא קליניקה מתקדמת לאסתטיקה רפואית בלב ירושלים, שהוקמה על ידי שתי אחיות ירושלמיות עם חזון אחד ברור: להביא ללקוחות את השילוב האידיאלי בין חדשנות רפואית, מקצועיות בלתי מתפשרת וסטנדרט של יופי טבעי ומדויק.
+                    </p>
+                    <p>
+                        בקליניקה תמצאו את הטיפולים החדשניים ביותר בתחום הרפואה האסתטית – עם דגש על תוצאה טבעית, רעננה ובריאה. כל טיפול מותאם אישית לצרכים, למבנה הפנים ולאורח החיים של המטופלת או המטופל, ומבוצע על ידי רופאים מומחים בלבד.
+                    </p>
+                    <p>
+                        אנחנו מאמינות בגישה הוליסטית ורגנרטיבית – לא רק תיקון, אלא התחדשות עמוקה מבפנים החוצה. לכן בחרנו לשלב טכנולוגיות מתקדמות, חומרים מובילים ושיטות עבודה מדויקות – כדי לאפשר לכם לקבל את התוצאה הטובה ביותר, בבטיחות מלאה.
+                    </p>
+                    <p>
+                        <strong>חדש בקליניקה:</strong> טיפולי PRP לחידוש תאי העור ולשיקום טבעי על בסיס טכנולוגיה ביולוגית מתקדמת – טיפול מהדור הבא של האסתטיקה.
+                    </p>
+                </div>
+
+                <div class="about-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='600' viewBox='0 0 500 600'%3E%3Crect width='500' height='600' fill='%23f8f5f4'/%3E%3Ctext x='250' y='300' text-anchor='middle' font-family='Arial' font-size='20' fill='%23d4c0bf'%3EAbout Image%3C/text%3E%3C/svg%3E" alt="קליניקת Amiler">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section" id="services">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-badge">השירותים שלנו</div>
+                <h2 class="section-title">טיפולים מתקדמים</h2>
+                <p class="section-subtitle">
+                    מגוון טיפולי אסתטיקה רפואית מתקדמים עם דגש על תוצאות טבעיות ובטיחות מלאה
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💉</div>
+                    <h3 class="service-title">בוטוקס</h3>
+                    <p class="service-description">
+                        להחלקת קמטים דינמיים באזורים כמו המצח, הבין-גבות וצדי העיניים. כולל גם טיפולים רפואיים להזעת יתר.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🧪</div>
+                    <h3 class="service-title">חומצה היאלורונית</h3>
+                    <p class="service-description">
+                        למילוי קמטים, עיצוב ופיסול הפנים, הענקת נפח לשפתיים, לחיים וקווי מתאר.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">קלציום הידרוקסיאפטיט (Radiesse)</h3>
+                    <p class="service-description">
+                        ביו-סטימולטור לעידוד ייצור קולגן, שיקום נפחים והחלקת העור.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔬</div>
+                    <h3 class="service-title">ביו-סטימולטורים נוספים</h3>
+                    <p class="service-description">
+                        כגון Sculptra/ Ellansé לעידוד תהליך התחדשות העור, מיצוק ושיקום טבעי לאורך זמן.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3 class="service-title">סקין בוסטרים</h3>
+                    <p class="service-description">
+                        הזרקות עדינות להזנת העור, שיפור הלחות, האלסטיות והמרקם הכללי.
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🩸</div>
+                    <h3 class="service-title">טיפולי PRP</h3>
+                    <p class="service-description">
+                        טכנולוגיה ביולוגית מתקדמת לחידוש תאי העור ושיקום טבעי - טיפול מהדור הבא.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features section">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-badge">למה לבחור בנו</div>
+                <h2 class="section-title">היתרונות שלנו</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">👩‍⚕️</div>
+                    <h3 class="feature-title">מומחיות ושירות מקצועי</h3>
+                    <p class="feature-description">
+                        גאים להציע שירותים מקצועיים המבוססים על ניסיון עשיר ותשומת לב לפרטים הקטנים, עם דגש על איכות ושביעות רצון הלקוח.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🔬</div>
+                    <h3 class="feature-title">חדשנות וסטנדרטים גבוהים</h3>
+                    <p class="feature-description">
+                        אצלנו משתמשים בטכנולוגיות וחומרים מתקדמים מהשורה הראשונה, תוך שמירה על סטנדרטים רפואיים מחמירים לבטיחות ואיכות.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">טיפולים בהתאמה אישית</h3>
+                    <p class="feature-description">
+                        כל טיפול במרפאה מותאם ללקוח לפי הנתונים הרפואיים והצרכים האישיים שלו, ומבוצע תוך הקפדה על מראה טבעי ויפהפה.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">בטיחות מלאה</h3>
+                    <p class="feature-description">
+                        כל הטיפולים מבוצעים על ידי רופאים מומחים בלבד, עם הקפדה על פרוטוקולים רפואיים מחמירים ובטיחות הלקוח.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery section" id="gallery">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-badge">התוצאות שלנו</div>
+                <h2 class="section-title">גלריית לפני ואחרי</h2>
+                <p class="section-subtitle">
+                    צפו בתוצאות המדהימות של הלקוחות שלנו וגלו את ההבדל שהטיפולים שלנו יכולים לעשות
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f8f5f4'/%3E%3Ctext x='150' y='150' text-anchor='middle' font-family='Arial' font-size='16' fill='%23d4c0bf'%3EBefore/After%3C/text%3E%3C/svg%3E" alt="תוצאות טיפול 1">
+                    <div class="gallery-overlay">
+                        <span style="color: white; font-weight: 600;">לפני ואחרי - בוטוקס</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f8f5f4'/%3E%3Ctext x='150' y='150' text-anchor='middle' font-family='Arial' font-size='16' fill='%23d4c0bf'%3EBefore/After%3C/text%3E%3C/svg%3E" alt="תוצאות טיפול 2">
+                    <div class="gallery-overlay">
+                        <span style="color: white; font-weight: 600;">לפני ואחרי - מילוי שפתיים</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f8f5f4'/%3E%3Ctext x='150' y='150' text-anchor='middle' font-family='Arial' font-size='16' fill='%23d4c0bf'%3EBefore/After%3C/text%3E%3C/svg%3E" alt="תוצאות טיפול 3">
+                    <div class="gallery-overlay">
+                        <span style="color: white; font-weight: 600;">לפני ואחרי - PRP</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f8f5f4'/%3E%3Ctext x='150' y='150' text-anchor='middle' font-family='Arial' font-size='16' fill='%23d4c0bf'%3EBefore/After%3C/text%3E%3C/svg%3E" alt="תוצאות טיפול 4">
+                    <div class="gallery-overlay">
+                        <span style="color: white; font-weight: 600;">לפני ואחרי - סקין בוסטר</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-badge">בואו נכיר</div>
+                <h2 class="section-title">צרו איתנו קשר</h2>
+                <p class="section-subtitle">
+                    מוכנים להתחיל את המסע שלכם לקראת מראה טבעי ורענן? צרו איתנו קשר לייעוץ אישי
+                </p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>טלפון</h4>
+                            <p>0548917070</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>אימייל</h4>
+                            <p>20natalili20@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>כתובת</h4>
+                            <p>בית האומות, דרך חברון 101, ירושלים</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🕐</div>
+                        <div class="contact-details">
+                            <h4>שעות פעילות</h4>
+                            <p>א׳-ה׳ 10:00-18:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--text-dark);">השאירו לנו הודעה ונחזור אליכם בהקדם</h3>
+                    
+                    <div class="form-group">
+                        <label for="name" class="form-label">שם מלא</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">אימייל</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">טלפון</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">הודעה</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary">שלח הודעה</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Amiler Medical Aesthetic</h3>
+                <p>קליניקה מתקדמת לאסתטיקה רפואית בירושלים. חדשנות רפואית, מקצועיות בלתי מתפשרת וסטנדרט של יופי טבעי ומדויק.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/?locale=he_IL" class="social-link" target="_blank">📘</a>
+                    <a href="https://www.instagram.com/amiler_medical_aesthetics?igsh=ZGdyd2Ztd2dvZGFq" class="social-link" target="_blank">📷</a>
+                    <a href="https://api.whatsapp.com/send?phone=972548917070" class="social-link" target="_blank">📱</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>שירותים</h3>
+                <p><a href="#services">בוטוקס</a></p>
+                <p><a href="#services">חומצה היאלורונית</a></p>
+                <p><a href="#services">ביו-סטימולטורים</a></p>
+                <p><a href="#services">PRP</a></p>
+                <p><a href="#services">סקין בוסטרים</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>קישורים מהירים</h3>
+                <p><a href="#home">בית</a></p>
+                <p><a href="#about">אודות</a></p>
+                <p><a href="#services">שירותים</a></p>
+                <p><a href="#gallery">גלריה</a></p>
+                <p><a href="#contact">צור קשר</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>יצירת קשר</h3>
+                <p>📞 0548917070</p>
+                <p>📧 20natalili20@gmail.com</p>
+                <p>📍 בית האומות, דרך חברון 101, ירושלים</p>
+                <p>🕐 א׳-ה׳ 10:00-18:00</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Amiler Medical Aesthetic. כל הזכויות שמורות.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://api.whatsapp.com/send?phone=972548917070" class="whatsapp-float" target="_blank">
+        💬
+    </a>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">↑</button>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
