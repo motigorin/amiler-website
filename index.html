@@ -992,6 +992,91 @@
         .slide-in {
             animation: fadeInLeft 0.8s ease forwards;
         }
+
+        /* Reels Section */
+        .reels-section {
+            background-color: var(--white);
+            padding-bottom: 4rem;
+        }
+
+        .reels-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .instagram-handle {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            direction: ltr;
+            display: inline-block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .instagram-handle:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .reels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .reel-container {
+            position: relative;
+            background: #fff;
+            border-radius: 8px;
+            /* Slightly less rounded for iframes */
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            display: flex;
+            justify-content: center;
+        }
+
+        .reel-container iframe {
+            border: none;
+            overflow: hidden;
+            width: 100%;
+            /* Instagram embeds differ in height, usually around 560-600px for reels. 
+               We can set a min-height to ensure consistency or let content dictate. */
+            min-height: 550px;
+        }
+
+        .instagram-btn-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .btn-instagram {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            /* Reduced gap representing closer grouping */
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            /* Reduced padding */
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            /* Smaller font */
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+        }
+
+        .btn-instagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 39, 67, 0.4);
+        }
     </style>
 </head>
 
@@ -1251,6 +1336,49 @@
         </div>
     </section>
 
+    <!-- Instagram Reels Section -->
+    <section class="reels-section section" id="instagram">
+        <div class="section-container">
+            <div class="reels-header">
+                <h2 class="section-title">האינסטגרם שלנו</h2>
+                <a href="https://www.instagram.com/amiler_medical_aesthetics/" target="_blank"
+                    class="instagram-handle">@amiler_medical_aesthetics</a>
+            </div>
+
+            <div class="reels-grid">
+                <!-- Reel 1 -->
+                <div class="reel-container">
+                    <iframe src="https://www.instagram.com/p/DSZxz-6DYi3/embed" allowtransparency="true"
+                        allowfullscreen="true" frameborder="0" scrolling="no"></iframe>
+                </div>
+
+                <!-- Reel 2 -->
+                <div class="reel-container">
+                    <iframe src="https://www.instagram.com/p/DSRyDtSjWOh/embed" allowtransparency="true"
+                        allowfullscreen="true" frameborder="0" scrolling="no"></iframe>
+                </div>
+
+                <!-- Reel 3 -->
+                <div class="reel-container">
+                    <iframe src="https://www.instagram.com/p/DRjTfwBCGcq/embed" allowtransparency="true"
+                        allowfullscreen="true" frameborder="0" scrolling="no"></iframe>
+                </div>
+
+                <!-- Reel 4 -->
+                <div class="reel-container">
+                    <iframe src="https://www.instagram.com/p/DMNAFVhoI6Y/embed" allowtransparency="true"
+                        allowfullscreen="true" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </div>
+
+            <div class="instagram-btn-container">
+                <a href="https://www.instagram.com/amiler_medical_aesthetics/" target="_blank" class="btn-instagram">
+                    <span></span>
+                    <span>עקבו אחרינו באינסטגרם 📷</span>
+                </a>
+            </div>
+        </div>
+    </section>
     <!-- Contact Section -->
     <section class="contact section" id="contact">
         <div class="section-container">
