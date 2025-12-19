@@ -1,6 +1,6 @@
 // Amiler Medical Aesthetic - Main JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
+
     // Variables
     const header = document.getElementById('header');
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Header scroll effect
     let lastScrollTop = 0;
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
+
         // Add scrolled class to header
         if (scrollTop > 100) {
             header.classList.add('scrolled');
@@ -37,14 +37,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Mobile menu toggle
-    mobileMenuToggle.addEventListener('click', function() {
+    mobileMenuToggle.addEventListener('click', function () {
         this.classList.toggle('active');
         nav.classList.toggle('active');
     });
 
     // Close mobile menu when clicking on nav links
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             mobileMenuToggle.classList.remove('active');
             nav.classList.remove('active');
         });
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Scroll to top button
-    scrollToTopBtn.addEventListener('click', function() {
+    scrollToTopBtn.addEventListener('click', function () {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -100,9 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Contact form submission
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Get form data
             const formData = new FormData(this);
             const name = formData.get('name');
@@ -154,10 +154,10 @@ ${message}
     });
 
     // Parallax effect for floating elements
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const scrolled = window.pageYOffset;
         const parallax = scrolled * 0.5;
-        
+
         document.querySelectorAll('.floating-element').forEach((element, index) => {
             const speed = (index + 1) * 0.2;
             element.style.transform = `translateY(${parallax * speed}px)`;
@@ -166,7 +166,7 @@ ${message}
 
     // Gallery lightbox functionality
     document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             const img = this.querySelector('img');
             openLightbox(img.src, img.alt);
         });
@@ -174,7 +174,7 @@ ${message}
 
     // Phone number formatting (Israeli format)
     document.querySelectorAll('input[type="tel"]').forEach(input => {
-        input.addEventListener('input', function() {
+        input.addEventListener('input', function () {
             let value = this.value.replace(/\D/g, '');
             if (value.length > 0) {
                 if (value.length <= 3) {
@@ -199,7 +199,7 @@ ${message}
                 <button onclick="this.parentElement.parentElement.remove()">&times;</button>
             </div>
         `;
-        
+
         // Add styles
         notification.style.cssText = `
             position: fixed;
@@ -214,9 +214,9 @@ ${message}
             animation: slideInRight 0.3s ease;
             max-width: 300px;
         `;
-        
+
         document.body.appendChild(notification);
-        
+
         // Auto remove after 5 seconds
         setTimeout(() => {
             if (notification.parentElement) {
@@ -234,7 +234,7 @@ ${message}
                 <button class="lightbox-close">&times;</button>
             </div>
         `;
-        
+
         // Add styles
         lightbox.style.cssText = `
             position: fixed;
@@ -249,7 +249,7 @@ ${message}
             z-index: 10002;
             cursor: pointer;
         `;
-        
+
         const content = lightbox.querySelector('.lightbox-content');
         content.style.cssText = `
             position: relative;
@@ -257,15 +257,17 @@ ${message}
             max-height: 90%;
             cursor: default;
         `;
-        
+
         const img = lightbox.querySelector('img');
         img.style.cssText = `
-            width: 100%;
-            height: auto;
+            width: auto;
+            max-width: 100%;
+            max-height: 85vh; /* Limit height to viewport */
+            object-fit: contain;
             border-radius: 8px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.3);
         `;
-        
+
         const closeBtn = lightbox.querySelector('.lightbox-close');
         closeBtn.style.cssText = `
             position: absolute;
@@ -280,23 +282,23 @@ ${message}
             padding: 0;
             line-height: 1;
         `;
-        
+
         document.body.appendChild(lightbox);
-        
+
         // Close on background click
-        lightbox.addEventListener('click', function(e) {
+        lightbox.addEventListener('click', function (e) {
             if (e.target === this) {
                 this.remove();
             }
         });
-        
+
         // Close on button click
-        closeBtn.addEventListener('click', function() {
+        closeBtn.addEventListener('click', function () {
             lightbox.remove();
         });
-        
+
         // Close on escape key
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && lightbox.parentElement) {
                 lightbox.remove();
             }
@@ -304,7 +306,7 @@ ${message}
     }
 
     // Add keyboard navigation support
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         // Press 'h' to go to home
         if (e.key.toLowerCase() === 'h' && !e.ctrlKey && !e.altKey) {
             const target = document.querySelector('#home');
@@ -312,7 +314,7 @@ ${message}
                 target.scrollIntoView({ behavior: 'smooth' });
             }
         }
-        
+
         // Press 'c' to go to contact
         if (e.key.toLowerCase() === 'c' && !e.ctrlKey && !e.altKey) {
             const target = document.querySelector('#contact');
@@ -324,24 +326,24 @@ ${message}
 
     // Add hover effects for service cards
     document.querySelectorAll('.service-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-10px) scale(1.02)';
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0) scale(1)';
         });
     });
 
     // Add ripple effect to buttons
     document.querySelectorAll('.cta-button, .btn-primary, .btn-secondary').forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             const ripple = document.createElement('span');
             const rect = this.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
             const x = e.clientX - rect.left - size / 2;
             const y = e.clientY - rect.top - size / 2;
-            
+
             ripple.style.cssText = `
                 position: absolute;
                 top: ${y}px;
@@ -354,11 +356,11 @@ ${message}
                 animation: ripple 0.6s linear;
                 pointer-events: none;
             `;
-            
+
             this.style.position = 'relative';
             this.style.overflow = 'hidden';
             this.appendChild(ripple);
-            
+
             setTimeout(() => {
                 ripple.remove();
             }, 600);
@@ -455,7 +457,7 @@ ${message}
 
     // Performance monitoring
     if ('performance' in window) {
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             setTimeout(() => {
                 const perfData = performance.getEntriesByType('navigation')[0];
                 console.log(`Page load time: ${Math.round(perfData.loadEventEnd - perfData.fetchStart)}ms`);
@@ -465,12 +467,12 @@ ${message}
 
     // Service Worker registration for PWA capabilities
     if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             navigator.serviceWorker.register('/sw.js')
-                .then(function(registration) {
+                .then(function (registration) {
                     console.log('SW registered: ', registration);
                 })
-                .catch(function(registrationError) {
+                .catch(function (registrationError) {
                     console.log('SW registration failed: ', registrationError);
                 });
         });
@@ -496,7 +498,7 @@ function debounce(func, wait, immediate) {
 
 function throttle(func, limit) {
     let inThrottle;
-    return function() {
+    return function () {
         const args = arguments;
         const context = this;
         if (!inThrottle) {
@@ -514,12 +516,12 @@ function trackEvent(category, action, label) {
 }
 
 // Error handling
-window.addEventListener('error', function(e) {
+window.addEventListener('error', function (e) {
     console.error('JavaScript error:', e.error);
     // Send error to monitoring service
 });
 
-window.addEventListener('unhandledrejection', function(e) {
+window.addEventListener('unhandledrejection', function (e) {
     console.error('Unhandled promise rejection:', e.reason);
     // Send error to monitoring service
 });
