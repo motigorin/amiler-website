@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amiler Medical Aesthetic - קליניקה לאסתטיקה רפואית מתקדמת</title>
-    <meta name="description" content="Amiler - קליניקה מתקדמת לאסתטיקה רפואית בירושלים. טיפולי בוטוקס, חומצה היאלורונית, PRP ועוד. הזמיני ייעוץ אישי היום!">
-    
+    <meta name="description"
+        content="Amiler - קליניקה מתקדמת לאסתטיקה רפואית בירושלים. טיפולי בוטוקס, חומצה היאלורונית, PRP ועוד. הזמיני ייעוץ אישי היום!">
+
     <!-- Preload critical fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@300;400;500;600;700&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+
     <!-- Critical CSS -->
     <style>
         * {
@@ -28,9 +33,9 @@
             --text-light: #666;
             --text-muted: #999;
             --white: #ffffff;
-            --shadow-light: 0 2px 10px rgba(0,0,0,0.05);
-            --shadow-medium: 0 4px 20px rgba(0,0,0,0.1);
-            --shadow-heavy: 0 8px 30px rgba(0,0,0,0.15);
+            --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.15);
             --border-radius: 12px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -73,8 +78,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Header Styles */
@@ -248,7 +258,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, var(--secondary-color) 0%, rgba(255,255,255,0.8) 100%);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, rgba(255, 255, 255, 0.8) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -380,8 +390,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         @keyframes fadeInUp {
@@ -389,6 +406,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -400,6 +418,7 @@
                 opacity: 0;
                 transform: translateX(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -657,7 +676,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -907,24 +926,47 @@
             0% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.05);
             }
+
             100% {
                 transform: scale(1);
             }
         }
 
         /* Utilities */
-        .text-center { text-align: center; }
-        .text-primary { color: var(--primary-color); }
-        .bg-white { background: white; }
-        .bg-secondary { background: var(--secondary-color); }
-        .hidden { display: none; }
-        .fade-in { animation: fadeInUp 0.8s ease forwards; }
-        .slide-in { animation: fadeInLeft 0.8s ease forwards; }
+        .text-center {
+            text-align: center;
+        }
+
+        .text-primary {
+            color: var(--primary-color);
+        }
+
+        .bg-white {
+            background: white;
+        }
+
+        .bg-secondary {
+            background: var(--secondary-color);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .slide-in {
+            animation: fadeInLeft 0.8s ease forwards;
+        }
     </style>
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
@@ -935,7 +977,8 @@
     <header class="header" id="header">
         <div class="header-container">
             <a href="#home" class="logo">
-                <img src="https://amileraesthetics.my-websites.co/wp-content/uploads/elementor/thumbs/67bb0d70e10b0-r3a0zswwiiw6w1npuryyr0acml9ojwzlebj6g4kxcg.jpeg" alt="Amiler Medical Aesthetic" style="height: 40px; width: auto;">
+                <img src="assets/images/logo.jpg" alt="Amiler Medical Aesthetic"
+                    style="height: 40px; width: auto; border-radius: 50%;">
                 <span>Amiler Medical Aesthetic</span>
             </a>
 
@@ -960,7 +1003,7 @@
     <section class="hero" id="home">
         <div class="floating-element"></div>
         <div class="floating-element"></div>
-        
+
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-badge">✨ מותג האסתטיקה המוביל בירושלים</div>
@@ -969,7 +1012,8 @@
                     <span class="text-primary">Aesthetic</span>
                 </h1>
                 <p class="hero-subtitle">
-                    קליניקה מתקדמת לאסתטיקה רפואית בירושלים. חדשנות רפואית, מקצועיות בלתי מתפשרת וסטנדרט של יופי טבעי ומדויק.
+                    קליניקה מתקדמת לאסתטיקה רפואית בירושלים. חדשנות רפואית, מקצועיות בלתי מתפשרת וסטנדרט של יופי טבעי
+                    ומדויק.
                 </p>
                 <div class="hero-actions">
                     <a href="#contact" class="cta-button">הזמן ייעוץ אישי</a>
@@ -978,7 +1022,7 @@
             </div>
 
             <div class="hero-image">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23f8f5f4'/%3E%3Ctext x='300' y='200' text-anchor='middle' font-family='Arial' font-size='24' fill='%23d4c0bf'%3EAmiler Medical Aesthetic%3C/text%3E%3C/svg%3E" alt="Amiler Medical Aesthetic - טיפולי יופי מתקדמים">
+                <img src="assets/images/hero.jpg" alt="Amiler Medical Aesthetic - טיפולי יופי מתקדמים">
             </div>
         </div>
     </section>
@@ -990,28 +1034,36 @@
                 <div class="section-badge">אודותינו</div>
                 <h2 class="section-title">מי אנחנו</h2>
                 <p class="section-subtitle">
-                    שתי אחיות ירושלמיות עם חזון אחד ברור: להביא ללקוחות את השילוב האידיאלי בין חדשנות רפואית ומקצועיות בלתי מתפשרת
+                    שתי אחיות ירושלמיות עם חזון אחד ברור: להביא ללקוחות את השילוב האידיאלי בין חדשנות רפואית ומקצועיות
+                    בלתי מתפשרת
                 </p>
             </div>
 
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        <strong>Amiler – מדיקל אסתטיק</strong> היא קליניקה מתקדמת לאסתטיקה רפואית בלב ירושלים, שהוקמה על ידי שתי אחיות ירושלמיות עם חזון אחד ברור: להביא ללקוחות את השילוב האידיאלי בין חדשנות רפואית, מקצועיות בלתי מתפשרת וסטנדרט של יופי טבעי ומדויק.
+                        <strong>Amiler – מדיקל אסתטיק</strong> היא קליניקה מתקדמת לאסתטיקה רפואית בלב ירושלים, שהוקמה על
+                        ידי שתי אחיות ירושלמיות עם חזון אחד ברור: להביא ללקוחות את השילוב האידיאלי בין חדשנות רפואית,
+                        מקצועיות בלתי מתפשרת וסטנדרט של יופי טבעי ומדויק.
                     </p>
                     <p>
-                        בקליניקה תמצאו את הטיפולים החדשניים ביותר בתחום הרפואה האסתטית – עם דגש על תוצאה טבעית, רעננה ובריאה. כל טיפול מותאם אישית לצרכים, למבנה הפנים ולאורח החיים של המטופלת או המטופל, ומבוצע על ידי רופאים מומחים בלבד.
+                        בקליניקה תמצאו את הטיפולים החדשניים ביותר בתחום הרפואה האסתטית – עם דגש על תוצאה טבעית, רעננה
+                        ובריאה. כל טיפול מותאם אישית לצרכים, למבנה הפנים ולאורח החיים של המטופלת או המטופל, ומבוצע על
+                        ידי רופאים מומחים בלבד.
                     </p>
                     <p>
-                        אנחנו מאמינות בגישה הוליסטית ורגנרטיבית – לא רק תיקון, אלא התחדשות עמוקה מבפנים החוצה. לכן בחרנו לשלב טכנולוגיות מתקדמות, חומרים מובילים ושיטות עבודה מדויקות – כדי לאפשר לכם לקבל את התוצאה הטובה ביותר, בבטיחות מלאה.
+                        אנחנו מאמינות בגישה הוליסטית ורגנרטיבית – לא רק תיקון, אלא התחדשות עמוקה מבפנים החוצה. לכן בחרנו
+                        לשלב טכנולוגיות מתקדמות, חומרים מובילים ושיטות עבודה מדויקות – כדי לאפשר לכם לקבל את התוצאה
+                        הטובה ביותר, בבטיחות מלאה.
                     </p>
                     <p>
-                        <strong>חדש בקליניקה:</strong> טיפולי PRP לחידוש תאי העור ולשיקום טבעי על בסיס טכנולוגיה ביולוגית מתקדמת – טיפול מהדור הבא של האסתטיקה.
+                        <strong>חדש בקליניקה:</strong> טיפולי PRP לחידוש תאי העור ולשיקום טבעי על בסיס טכנולוגיה
+                        ביולוגית מתקדמת – טיפול מהדור הבא של האסתטיקה.
                     </p>
                 </div>
 
                 <div class="about-image">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='600' viewBox='0 0 500 600'%3E%3Crect width='500' height='600' fill='%23f8f5f4'/%3E%3Ctext x='250' y='300' text-anchor='middle' font-family='Arial' font-size='20' fill='%23d4c0bf'%3EAbout Image%3C/text%3E%3C/svg%3E" alt="קליניקת Amiler">
+                    <img src="assets/images/about.jpg" alt="קליניקת Amiler">
                 </div>
             </div>
         </div>
@@ -1033,7 +1085,8 @@
                     <div class="service-icon">💉</div>
                     <h3 class="service-title">בוטוקס</h3>
                     <p class="service-description">
-                        להחלקת קמטים דינמיים באזורים כמו המצח, הבין-גבות וצדי העיניים. כולל גם טיפולים רפואיים להזעת יתר.
+                        להחלקת קמטים דינמיים באזורים כמו המצח, הבין-גבות וצדי העיניים. כולל גם טיפולים רפואיים להזעת
+                        יתר.
                     </p>
                 </div>
 
@@ -1093,7 +1146,8 @@
                     <div class="feature-icon">👩‍⚕️</div>
                     <h3 class="feature-title">מומחיות ושירות מקצועי</h3>
                     <p class="feature-description">
-                        גאים להציע שירותים מקצועיים המבוססים על ניסיון עשיר ותשומת לב לפרטים הקטנים, עם דגש על איכות ושביעות רצון הלקוח.
+                        גאים להציע שירותים מקצועיים המבוססים על ניסיון עשיר ותשומת לב לפרטים הקטנים, עם דגש על איכות
+                        ושביעות רצון הלקוח.
                     </p>
                 </div>
 
@@ -1101,7 +1155,8 @@
                     <div class="feature-icon">🔬</div>
                     <h3 class="feature-title">חדשנות וסטנדרטים גבוהים</h3>
                     <p class="feature-description">
-                        אצלנו משתמשים בטכנולוגיות וחומרים מתקדמים מהשורה הראשונה, תוך שמירה על סטנדרטים רפואיים מחמירים לבטיחות ואיכות.
+                        אצלנו משתמשים בטכנולוגיות וחומרים מתקדמים מהשורה הראשונה, תוך שמירה על סטנדרטים רפואיים מחמירים
+                        לבטיחות ואיכות.
                     </p>
                 </div>
 
@@ -1109,7 +1164,8 @@
                     <div class="feature-icon">🎯</div>
                     <h3 class="feature-title">טיפולים בהתאמה אישית</h3>
                     <p class="feature-description">
-                        כל טיפול במרפאה מותאם ללקוח לפי הנתונים הרפואיים והצרכים האישיים שלו, ומבוצע תוך הקפדה על מראה טבעי ויפהפה.
+                        כל טיפול במרפאה מותאם ללקוח לפי הנתונים הרפואיים והצרכים האישיים שלו, ומבוצע תוך הקפדה על מראה
+                        טבעי ויפהפה.
                     </p>
                 </div>
 
@@ -1117,7 +1173,8 @@
                     <div class="feature-icon">🛡️</div>
                     <h3 class="feature-title">בטיחות מלאה</h3>
                     <p class="feature-description">
-                        כל הטיפולים מבוצעים על ידי רופאים מומחים בלבד, עם הקפדה על פרוטוקולים רפואיים מחמירים ובטיחות הלקוח.
+                        כל הטיפולים מבוצעים על ידי רופאים מומחים בלבד, עם הקפדה על פרוטוקולים רפואיים מחמירים ובטיחות
+                        הלקוח.
                     </p>
                 </div>
             </div>
@@ -1137,28 +1194,28 @@
 
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f8f5f4'/%3E%3Ctext x='150' y='150' text-anchor='middle' font-family='Arial' font-size='16' fill='%23d4c0bf'%3EBefore/After%3C/text%3E%3C/svg%3E" alt="תוצאות טיפול 1">
+                    <img src="assets/images/gallery_authentic.jpg" alt="תוצאות טיפול 1">
                     <div class="gallery-overlay">
                         <span style="color: white; font-weight: 600;">לפני ואחרי - בוטוקס</span>
                     </div>
                 </div>
 
                 <div class="gallery-item">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f8f5f4'/%3E%3Ctext x='150' y='150' text-anchor='middle' font-family='Arial' font-size='16' fill='%23d4c0bf'%3EBefore/After%3C/text%3E%3C/svg%3E" alt="תוצאות טיפול 2">
+                    <img src="assets/images/gallery_2.jpg" alt="תוצאות טיפול 2">
                     <div class="gallery-overlay">
                         <span style="color: white; font-weight: 600;">לפני ואחרי - מילוי שפתיים</span>
                     </div>
                 </div>
 
                 <div class="gallery-item">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f8f5f4'/%3E%3Ctext x='150' y='150' text-anchor='middle' font-family='Arial' font-size='16' fill='%23d4c0bf'%3EBefore/After%3C/text%3E%3C/svg%3E" alt="תוצאות טיפול 3">
+                    <img src="assets/images/gallery_3.jpg" alt="תוצאות טיפול 3">
                     <div class="gallery-overlay">
                         <span style="color: white; font-weight: 600;">לפני ואחרי - PRP</span>
                     </div>
                 </div>
 
                 <div class="gallery-item">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23f8f5f4'/%3E%3Ctext x='150' y='150' text-anchor='middle' font-family='Arial' font-size='16' fill='%23d4c0bf'%3EBefore/After%3C/text%3E%3C/svg%3E" alt="תוצאות טיפול 4">
+                    <img src="assets/images/gallery_4.jpg" alt="תוצאות טיפול 4">
                     <div class="gallery-overlay">
                         <span style="color: white; font-weight: 600;">לפני ואחרי - סקין בוסטר</span>
                     </div>
@@ -1215,7 +1272,7 @@
 
                 <form class="contact-form" id="contactForm">
                     <h3 style="margin-bottom: 1.5rem; color: var(--text-dark);">השאירו לנו הודעה ונחזור אליכם בהקדם</h3>
-                    
+
                     <div class="form-group">
                         <label for="name" class="form-label">שם מלא</label>
                         <input type="text" id="name" name="name" class="form-control" required>
@@ -1247,11 +1304,14 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Amiler Medical Aesthetic</h3>
-                <p>קליניקה מתקדמת לאסתטיקה רפואית בירושלים. חדשנות רפואית, מקצועיות בלתי מתפשרת וסטנדרט של יופי טבעי ומדויק.</p>
+                <p>קליניקה מתקדמת לאסתטיקה רפואית בירושלים. חדשנות רפואית, מקצועיות בלתי מתפשרת וסטנדרט של יופי טבעי
+                    ומדויק.</p>
                 <div class="social-links">
                     <a href="https://www.facebook.com/?locale=he_IL" class="social-link" target="_blank">📘</a>
-                    <a href="https://www.instagram.com/amiler_medical_aesthetics?igsh=ZGdyd2Ztd2dvZGFq" class="social-link" target="_blank">📷</a>
-                    <a href="https://api.whatsapp.com/send?phone=972548917070" class="social-link" target="_blank">📱</a>
+                    <a href="https://www.instagram.com/amiler_medical_aesthetics?igsh=ZGdyd2Ztd2dvZGFq"
+                        class="social-link" target="_blank">📷</a>
+                    <a href="https://api.whatsapp.com/send?phone=972548917070" class="social-link"
+                        target="_blank">📱</a>
                 </div>
             </div>
 
@@ -1298,4 +1358,5 @@
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>
