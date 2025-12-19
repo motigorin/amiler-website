@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.amiler.co.il/</loc>
     <lastmod>2025-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.amiler.co.il/assets/images/logo.jpg</image:loc>
+      <image:title>Amiler Medical Aesthetics Logo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.amiler.co.il/assets/images/hero.jpg</image:loc>
+      <image:title>Amiler Medical Aesthetics Clinic - Jerusalem</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.amiler.co.il/assets/images/gallery_1.jpg</image:loc>
+      <image:title>Botox Treatment Result - Amiler Medical Aesthetics</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.amiler.co.il/assets/images/gallery_2.jpg</image:loc>
+      <image:title>Lip Filler Result - Amiler Medical Aesthetics</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.amiler.co.il/assets/images/gallery_3.jpg</image:loc>
+      <image:title>PRP Treatment Result - Amiler Medical Aesthetics</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.amiler.co.il/assets/images/gallery_4.jpg</image:loc>
+      <image:title>Skin Booster Result - Amiler Medical Aesthetics</image:title>
+    </image:image>
   </url>
 </urlset>
